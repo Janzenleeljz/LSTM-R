@@ -1,0 +1,26 @@
+{
+  "n_grid_points": 1441032,
+  "n_valid_trips": 2688,
+  "n_vehicles": 25,
+  "n_windows": 28989,
+  "elapsed_s": 61.8,
+  "validation": {
+    "silhouette_index_space": 0.571819804425082,
+    "silhouette_feature_space": 0.047214245695156226,
+    "ari_full_vs_ind_only": 0.1582345277514639,
+    "ari_full_vs_anom_only": 0.32767553524670257,
+    "spearman_full_vs_ind_only": 0.7076765013587788,
+    "spearman_full_vs_anom_only": 0.7770562037924805,
+    "spearman_quantile_vs_kmeans": 0.9171064846590122,
+    "ari_quantile_vs_kmeans": 0.5097678587973555,
+    "n_trips": 2688,
+    "grade_counts": {
+      "0": 999,
+      "1": 928,
+      "2": 589,
+      "3": 172
+    }
+  },
+  "alpha": 0.3,
+  "final_val_loss": 0.5833088495145726
+}
