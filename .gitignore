@@ -13,3 +13,8 @@ venv/
 # 临时
 .DS_Store
 *.log
+
+# paper build artifacts
+paper/*.pdf
+paper/template/_dump.txt
+paper/template/_table.txt

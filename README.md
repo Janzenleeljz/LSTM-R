@@ -5,7 +5,9 @@
 安全指标 + 熵权/CRITIC 组合赋权 → Δt 感知的掩码重构 LSTM 自编码器（自监督）→
 TOPSIS 融合综合运行风险指数 → 四级风险划分与分级验证。
 
-论文见 [`paper/paper.md`](paper/paper.md)。
+投稿期刊：《科学技术与工程》。论文 Word 文件由 [`paper/build_docx.py`](paper/build_docx.py)
+依据期刊模板自动生成（中英标题/摘要、正文双栏、三线表、图题中英对照、顺序编码参考文献），
+源稿见 [`paper/paper.md`](paper/paper.md)。
 
 ## 方法流程（对应发明专利 S1–S10）
 
@@ -32,10 +34,13 @@ TOPSIS 融合综合运行风险指数 → 四级风险划分与分级验证。
 pip install -r requirements.txt
 python -m src.run_pipeline            # 全流程（首次含预处理）
 python -m src.run_pipeline --use-cache  # 复用预处理缓存
+python paper/build_docx.py           # 由真实结果生成期刊格式论文 .docx
 ```
 
-产出：`results/tables/`（指标、权重、风险与分级、验证统计、运行汇总）、
-`results/figures/`（论文全部图）。随机种子固定，结果可复现。
+`run_pipeline` 产出：`results/tables/`（指标、权重、风险与分级、验证统计、运行汇总）、
+`results/figures/`（论文全部图）。随机种子固定，结果可复现（约 60 s）。
+`build_docx.py` 读取 `results/` 中的真实图表，输出
+`paper/危险货物运输车辆驾驶风险识别与分级方法.docx`。
 
 ## 主要实验结果（25 辆车 / 2024-01 / 约 105 万条记录）
 

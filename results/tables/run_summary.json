@@ -3,7 +3,7 @@
   "n_valid_trips": 2688,
   "n_vehicles": 25,
   "n_windows": 28989,
-  "elapsed_s": 61.8,
+  "elapsed_s": 61.3,
   "validation": {
     "silhouette_index_space": 0.571819804425082,
     "silhouette_feature_space": 0.047214245695156226,

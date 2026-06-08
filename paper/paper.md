@@ -2,7 +2,7 @@
 
 ## 摘要
 
-针对危险货物运输车辆（以下简称"危货车"）安全监管中事故与违章标签稀缺、北斗短报文（RDSS）定位数据稀疏且采样间隔不等的难题，本文提出一种融合多维替代安全指标与自监督轨迹表征的危货车驾驶风险识别与分级方法。首先，针对北斗短报文低频、不等间隔的采样特征，设计稀疏对齐与固定步长重采样流程，生成插值掩码并依据长盲区与持续停车进行驾驶段切分；其次，构建涵盖驾驶行为、监管合规与危货情境暴露三个维度、共 12 项方向统一的替代安全指标，采用熵权法与 CRITIC 法的几何平均组合赋权；再次，提出一种 Δt 感知、带掩码重构的长短期记忆（LSTM）自编码器，在无标签驾驶段序列上自监督地学习轨迹表征，并以重构误差作为异常分量；最后，通过逼近理想解排序法（TOPSIS）将加权指标分量与自监督异常分量融合为"综合运行风险指数"，并以一维 K 均值聚类实现四级风险划分。基于某区域 25 辆危货车 2024 年 1 月的 1,048,575 条真实北斗定位记录开展实验，经预处理得到 1,441,032 个重采样网格点与 2,688 个有效驾驶段。结果表明：所得风险指数在指数空间的聚类轮廓系数为 0.572；12 项替代安全指标在四个风险等级间的差异均通过 Kruskal–Wallis 检验（p<0.001），且随等级单调上升，表明分级结果具有良好的构念效度；消融实验显示综合指数与"仅指标""仅自监督"两个分量的 Spearman 相关分别为 0.708 与 0.777，二者均对最终风险排序产生实质贡献。本方法不依赖事故标签，可对驾驶风险倾向进行量化与分级，为危货运输监管提供可操作的技术支撑。
+针对危险货物运输车辆（以下简称"危货车"）安全监管中事故与违章标签稀缺、北斗短报文（RDSS）定位数据稀疏且采样间隔不等的难题，本文提出一种融合多维替代安全指标与自监督轨迹表征的危货车驾驶风险识别与分级方法。首先，针对北斗短报文低频、不等间隔的采样特征，设计稀疏对齐与固定步长重采样流程，生成插值掩码并依据长盲区与持续停车进行驾驶段切分；其次，构建涵盖驾驶行为、监管合规与危货情境暴露三个维度、共 12 项方向统一的替代安全指标，采用熵权法与 CRITIC 法的几何平均组合赋权；再次，提出一种 Δt 感知、带掩码重构的长短期记忆（LSTM）自编码器，在无标签驾驶段序列上自监督地学习轨迹表征，并以重构误差作为异常分量；最后，通过逼近理想解排序法（TOPSIS）将加权指标分量与自监督异常分量融合为"综合运行风险指数"，并以一维 K 均值聚类实现四级风险划分。基于某区域 25 辆危货车 2024 年 1 月的 1,048,575 条真实北斗定位记录开展实验，经预处理得到 1,441,032 个重采样网格点与 2,688 个有效驾驶段。结果表明：所得风险指数在指数空间的聚类轮廓系数为 0.572；12 项替代安全指标在四个风险等级间的差异均通过 Kruskal–Wallis 检验（p<0.001），其中 10 项随等级严格单调递增，表明分级结果具有良好的构念效度；消融实验显示综合指数与"仅指标""仅自监督"两个分量的 Spearman 相关分别为 0.708 与 0.777，二者均对最终风险排序产生实质贡献。本方法不依赖事故标签，可对驾驶风险倾向进行量化与分级，为危货运输监管提供可操作的技术支撑。
 
 **关键词**：北斗短报文；危险货物运输；驾驶风险识别；风险分级；自监督学习；LSTM 自编码器；TOPSIS
 
@@ -10,7 +10,7 @@
 
 ## Abstract
 
-To address the scarcity of accident/violation labels and the sparse, irregularly sampled nature of BeiDou short-message (RDSS) positioning data in the safety supervision of hazardous-materials (hazmat) transport vehicles, this paper proposes a driving-risk identification and grading method that fuses multi-dimensional surrogate safety indicators with self-supervised trajectory representations. A sparse-alignment and fixed-step resampling procedure is designed for the low-frequency, irregular sampling of BeiDou short messages, producing interpolation masks and segmenting driving sessions by long blind gaps and sustained stops. A 12-indicator surrogate safety system spanning driving behavior, regulatory compliance, and hazmat contextual exposure is then constructed, with weights obtained by a geometric-mean combination of the entropy-weight and CRITIC methods. A Δt-aware LSTM autoencoder with masked reconstruction learns trajectory representations self-supervised from unlabeled driving-session sequences, and its reconstruction error serves as an anomaly component. Finally, TOPSIS fuses the weighted indicator component and the self-supervised anomaly component into a composite operating-risk index, and a one-dimensional K-means clustering yields a four-level risk grading. Experiments on 1,048,575 real BeiDou records from 25 hazmat vehicles (January 2024) yield 1,441,032 resampled grid points and 2,688 valid driving sessions. The risk index attains a clustering silhouette of 0.572 in index space; all 12 surrogate indicators differ significantly across the four grades (Kruskal–Wallis, p<0.001) and increase monotonically with grade, indicating strong construct validity. Ablation shows Spearman correlations of 0.708 and 0.777 between the composite index and the indicator-only / anomaly-only variants, confirming that both components contribute substantively. The method requires no accident labels and quantifies and grades driving-risk propensity, providing actionable support for hazmat-transport supervision.
+To address the scarcity of accident/violation labels and the sparse, irregularly sampled nature of BeiDou short-message (RDSS) positioning data in the safety supervision of hazardous-materials (hazmat) transport vehicles, this paper proposes a driving-risk identification and grading method that fuses multi-dimensional surrogate safety indicators with self-supervised trajectory representations. A sparse-alignment and fixed-step resampling procedure is designed for the low-frequency, irregular sampling of BeiDou short messages, producing interpolation masks and segmenting driving sessions by long blind gaps and sustained stops. A 12-indicator surrogate safety system spanning driving behavior, regulatory compliance, and hazmat contextual exposure is then constructed, with weights obtained by a geometric-mean combination of the entropy-weight and CRITIC methods. A Δt-aware LSTM autoencoder with masked reconstruction learns trajectory representations self-supervised from unlabeled driving-session sequences, and its reconstruction error serves as an anomaly component. Finally, TOPSIS fuses the weighted indicator component and the self-supervised anomaly component into a composite operating-risk index, and a one-dimensional K-means clustering yields a four-level risk grading. Experiments on 1,048,575 real BeiDou records from 25 hazmat vehicles (January 2024) yield 1,441,032 resampled grid points and 2,688 valid driving sessions. The risk index attains a clustering silhouette of 0.572 in index space; all 12 surrogate indicators differ significantly across the four grades (Kruskal–Wallis, p<0.001), and 10 of them increase strictly monotonically with grade, indicating strong construct validity. Ablation shows Spearman correlations of 0.708 and 0.777 between the composite index and the indicator-only / anomaly-only variants, confirming that both components contribute substantively. The method requires no accident labels and quantifies and grades driving-risk propensity, providing actionable support for hazmat-transport supervision.
 
 **Keywords**: BeiDou short message; hazardous-materials transport; driving-risk identification; risk grading; self-supervised learning; LSTM autoencoder; TOPSIS
 
@@ -197,7 +197,7 @@ $$
 
 **内部聚类质量**。综合风险指数空间的聚类轮廓系数为 0.572，表明四级划分在指数维度上分离良好；指标空间轮廓系数为 0.047，反映原始 12 维指标空间高度重叠、单指标难以直接分级，从而凸显综合指数的必要性。
 
-**外部一致性**。如图 6 与表 2 所示，全部 12 项替代安全指标在四个风险等级间的差异均通过 Kruskal–Wallis 检验（p<0.001），且组均值随等级总体单调上升；指数与急加速率、急减速率、加速度均方根、速度熵等行为指标的 Spearman 相关较强（如 `acc_rms` 达 0.730）。这表明：风险等级越高的驾驶段，确实表现出更剧烈的速度波动、更频繁的速度突变、更高的夜间与暴露占比，分级结果具有良好的构念效度。
+**外部一致性**。如图 6 与表 2 所示，全部 12 项替代安全指标在四个风险等级间的差异均通过 Kruskal–Wallis 检验（p<0.001），其中 10 项随等级严格单调递增；指数与急加速率、急减速率、加速度均方根、速度熵等行为指标的 Spearman 相关较强（如 `acc_rms` 达 0.730）。这表明：风险等级越高的驾驶段，确实表现出更剧烈的速度波动、更频繁的速度突变与更高的暴露占比，分级结果具有良好的构念效度。需要指出的是，连续驾驶超 4h 占比与夜间行驶占比两项未呈严格单调：前者因合规性总体良好（仅 3 个驾驶段触发连续驾驶超 4h）、取值高度稀疏，其 Spearman 相关较弱（0.038）但组间差异仍显著；后者在高风险等级出现峰值而在极高风险等级回落，反映极高风险更多由速度突变与建成区暴露主导，符合多因素耦合的实际。
 
 ![图6 分级外部一致性](../results/figures/fig_validation.png)
 
@@ -252,13 +252,49 @@ $$
 
 ## 7 结论
 
-本文面向北斗短报文定位数据稀疏、不等间隔与事故标签稀缺的现实约束，提出并实现了一套危货车驾驶风险识别与分级方法：以稀疏对齐重采样与驾驶段切分适配数据特征，以三维 12 项替代安全指标与熵权—CRITIC 组合赋权刻画可解释风险，以 Δt 感知的掩码重构 LSTM 自编码器自监督地提取轨迹异常，并经 TOPSIS 融合为综合运行风险指数与四级分级。基于 25 辆危货车 2024 年 1 月真实数据的实验表明，所得分级在内部聚类质量、外部指标一致性与消融分析上均表现良好：12 项指标在各等级间差异显著（p<0.001）且随等级单调上升，指标与自监督两类信息互补贡献。本方法可复现、可解释、可落地，为危货运输的差异化、精准化安全监管提供了有效的技术途径。
+本文面向北斗短报文定位数据稀疏、不等间隔与事故标签稀缺的现实约束，提出并实现了一套危货车驾驶风险识别与分级方法：以稀疏对齐重采样与驾驶段切分适配数据特征，以三维 12 项替代安全指标与熵权—CRITIC 组合赋权刻画可解释风险，以 Δt 感知的掩码重构 LSTM 自编码器自监督地提取轨迹异常，并经 TOPSIS 融合为综合运行风险指数与四级分级。基于 25 辆危货车 2024 年 1 月真实数据的实验表明，所得分级在内部聚类质量、外部指标一致性与消融分析上均表现良好：12 项指标在各等级间差异显著（p<0.001）且其中 10 项随等级严格单调递增，指标与自监督两类信息互补贡献。本方法可复现、可解释、可落地，为危货运输的差异化、精准化安全监管提供了有效的技术途径。
 
 ---
 
 ## 参考文献
 
-（待补充，按目标期刊格式编排。建议涵盖：北斗短报文/RDSS 应用、危险货物运输安全与风险暴露评估、驾驶行为与驾驶风险量化、不规则采样时间序列建模与自监督学习、熵权法/CRITIC/TOPSIS 综合评价等方向的代表性文献。）
+> 投稿期刊：《科学技术与工程》。以下为顺序编码制参考文献，中文文献附英文译文；最终投稿前请核对各条卷期页码。
+
+[1] 周荣义, 林金玉, 刘勇. 危险货物道路运输风险评估的集对模型及应用[J]. 中国安全科学学报, 2019, 29(1): 173-179.
+
+[2] 马晓丽, 倪安宁, 谢晓忠, 等. 城市道路危险货物运输风险评估[J]. 中国安全科学学报, 2018, 28(5): 178-183.
+
+[3] 闫胜煜, 郝佳琪, 刘洋, 等. 基于熵权-TOPSIS的省域道路货运企业运营安全评估方法[J]. 重庆交通大学学报(自然科学版), 2025, 44(8): 116-122.
+
+[4] 武荣, 陈少阳, 崔华. 基于熵TOPSIS模型的大宗货物运输方式综合评价[J]. 重庆理工大学学报(自然科学), 2022, 36(6): 254-260.
+
+[5] 欧阳中辉, 樊辉锦, 陈青华, 等. 基于北斗短报文的特种车辆状态信息压缩传输方法研究[J]. 兵器装备工程学报, 2020, 41(9): 124-129.
+
+[6] Hwang C L, Yoon K. Multiple attribute decision making: methods and applications[M]. Berlin: Springer-Verlag, 1981: 58-191.
+
+[7] Diakoulaki D, Mavrotas G, Papayannakis L. Determining objective weights in multiple criteria problems: the CRITIC method[J]. Computers & Operations Research, 1995, 22(7): 763-770.
+
+[8] Shannon C E. A mathematical theory of communication[J]. The Bell System Technical Journal, 1948, 27(3): 379-423.
+
+[9] Hochreiter S, Schmidhuber J. Long short-term memory[J]. Neural Computation, 1997, 9(8): 1735-1780.
+
+[10] Che Z, Purushotham S, Cho K, et al. Recurrent neural networks for multivariate time series with missing values[J]. Scientific Reports, 2018, 8: 6085.
+
+[11] Malhotra P, Ramakrishnan A, Anand G, et al. LSTM-based encoder-decoder for multi-sensor anomaly detection[C]//Proceedings of the ICML 2016 Anomaly Detection Workshop. New York: ICML, 2016: 1-5.
+
+[12] Vaswani A, Shazeer N, Parmar N, et al. Attention is all you need[C]//Advances in Neural Information Processing Systems 30. Long Beach: Curran Associates, 2017: 5998-6008.
+
+[13] Kingma D P, Ba J. Adam: a method for stochastic optimization[C]//Proceedings of the 3rd International Conference on Learning Representations. San Diego: ICLR, 2015: 1-15.
+
+[14] Rousseeuw P J. Silhouettes: a graphical aid to the interpretation and validation of cluster analysis[J]. Journal of Computational and Applied Mathematics, 1987, 20: 53-65.
+
+[15] Hubert L, Arabie P. Comparing partitions[J]. Journal of Classification, 1985, 2(1): 193-218.
+
+[16] Kruskal W H, Wallis W A. Use of ranks in one-criterion variance analysis[J]. Journal of the American Statistical Association, 1952, 47(260): 583-621.
+
+[17] Hermans E, Brijs T, Wets G, et al. Benchmarking road safety: lessons to learn from a data envelopment analysis[J]. Accident Analysis & Prevention, 2009, 41(1): 174-182.
+
+[18] 交通运输部. 道路运输车辆动态监督管理办法[S]. 北京: 交通运输部, 2022.
 
 ---
 
