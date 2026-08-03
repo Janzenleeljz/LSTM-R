@@ -1,0 +1,20 @@
+# 数据（原始北斗短报文 CSV 与中间产物，体积大、含业务数据，不入库）
+data/raw/
+data/interim/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# 临时
+.DS_Store
+*.log
+
+# paper build artifacts
+paper/*.pdf
+paper/template/_dump.txt
+paper/template/_table.txt
